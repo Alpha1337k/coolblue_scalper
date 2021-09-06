@@ -1,0 +1,22 @@
+{
+  "name": "coolblue_scalper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alpha1337k/coolblue_scalper.git"
+  },
+  "author": "Alpha_1337k",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alpha1337k/coolblue_scalper/issues"
+  },
+  "homepage": "https://github.com/Alpha1337k/coolblue_scalper#readme",
+  "dependencies": {
+    "puppeteer": "^10.2.0"
+  }
+}
