@@ -65,8 +65,7 @@ function parsePrice(str : string) {
 	return parseFloat(pricecut);
 }
 
-async function load_file(path : string) : Promise<CBItem[]> {
-	const browser = await puppeteer.launch();
+async function load_file(path : string, browser : puppeteer.Browser) : Promise<CBItem[]> {
 	const page = await browser.newPage();
 	await page.goto(path, {waitUntil: 'load'});
 
@@ -110,7 +109,6 @@ async function load_file(path : string) : Promise<CBItem[]> {
 		}
 		return rval;
 	  });
-	browser.close();
 	return getCBItems;
 }
 
@@ -137,6 +135,7 @@ async function get_catagories(path:string) {
 let isgetting = false;
 
 export async function getItems() {
+	const browser = await puppeteer.launch();
 	if (isgetting == true)
 		return null;
 
@@ -153,7 +152,7 @@ export async function getItems() {
 		const e = catagories[i];
 		for (let x = 0; ; x++)
 		{
-			let basic = await load_file("https://www.coolblue.nl/tweedekans/producttype:" + e + "?pagina=" + x);
+			let basic = await load_file("https://www.coolblue.nl/tweedekans/producttype:" + e + "?pagina=" + x, browser);
 			
 			if (basic.length == 0)
 				break;
@@ -166,6 +165,7 @@ export async function getItems() {
 		rval.push({catagorie : e, items})
 	}
 	console.log("done!");
+	browser.close();
 
 	return rval;
 }
