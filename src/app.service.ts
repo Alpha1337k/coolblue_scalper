@@ -16,13 +16,7 @@ export class AppService {
 			});
 	}
 
-  getHello(): string {
-    return 'Hello World!';
-  }
-
 	async createItemList(cat : string) {
-
-		console.log(cat);
 		if (this.products == undefined)
 			this.products = await scalper.getItems();
 
@@ -34,15 +28,16 @@ export class AppService {
 						<th>Nieuwe Prijs</th>
 						<th>Korting</th>
 					</tr>`;
-		let x = 0;
-		for (; x < this.products.length; x++)
+
+
+		const foundProducts = this.products.find(x => x.catagorie == cat);
+
+		if (foundProducts == undefined)
+			rval += `<h3>Nothing found!</h3>`
+		else
 		{
-			if (this.products[x].catagorie == cat)
-				break;
-		}
-		if (x != this.products.length)
-			for (let i = 0; i < this.products[x].items.length; i++) {
-				const e = this.products[x].items[i];
+			for (let i = 0; i < foundProducts.items.length; i++) {
+				const e = foundProducts.items[i];
 					
 				rval += `
 					<tr onclick="OpenInNewTab('${e.link}')" class="item">
@@ -54,7 +49,7 @@ export class AppService {
 					</tr>
 						`
 			}
-
+		}
 		rval += '</table>'
 		return rval;
 	}

@@ -5,11 +5,6 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
   @Get("items/:id")
   async getItems(@Param() params): Promise<string> {
 	  return await this.appService.createItemList(params.id as string);
