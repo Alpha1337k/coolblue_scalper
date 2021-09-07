@@ -1,5 +1,7 @@
 # Coolblue Scalper
-[logo]: https://github.com/Alpha1337k/coolblue_scalper/blob/main/static/logo.png "Logo"
+<p align="center">
+  <img alt="Real cool image" src="https://github.com/Alpha1337k/coolblue_scalper/blob/main/static/logo.png" />
+</p>
 
 ### Or named something else idk
 
