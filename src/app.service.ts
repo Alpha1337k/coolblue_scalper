@@ -17,9 +17,6 @@ export class AppService {
 	}
 
 	async createItemList(cat : string) {
-		if (this.products == undefined)
-			this.products = await scalper.getItems();
-
 		let rval = `<table class="sortable">
 					<tr>
 						<th>Naam</th>
@@ -29,7 +26,8 @@ export class AppService {
 						<th>Korting</th>
 					</tr>`;
 
-
+		if (this.products == undefined)
+			return rval += `<h1>Indexing.. please wait</h1></table>`;
 		const foundProducts = this.products.find(x => x.catagorie == cat);
 
 		if (foundProducts == undefined)
@@ -58,7 +56,7 @@ export class AppService {
 		let rval : string = '';
 
 		if (this.products == undefined)
-			this.products = await scalper.getItems();
+			return rval;
 		for (let i = 0; i < this.products.length; i++) {
 			const e = this.products[i];
 			rval += `<option value="${e.catagorie}">${e.catagorie}</option>`
