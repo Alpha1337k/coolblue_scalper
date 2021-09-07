@@ -1,0 +1,35 @@
+* {
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 40px;
+}
+
+h3 {
+	font-size: 25px;
+}
+
+h4 {
+	font-size: 20px;
+}
+
+h5 {
+	font-size: 15px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+#maintable {
+	margin: 0 auto;
+    width: fit-content;
+}
+
+tr:hover {
+	cursor: pointer;
+}
