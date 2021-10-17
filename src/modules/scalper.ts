@@ -150,7 +150,7 @@ export async function getItems() {
 		let items : Item[] = [];
 
 		const e = categories[i];
-		for (let x = 0; ; x++)
+		for (let x = 0; x < 20; x++)
 		{
 			let basic = await load_file("https://www.coolblue.nl/tweedekans/producttype:" + e + "?pagina=" + x, browser);
 			
