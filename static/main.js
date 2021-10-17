@@ -27,8 +27,8 @@ window.onpopstate = function(e){
 	}
 };
 
-function ChangeCatagory() {
-	const val = document.getElementById("CatagorieSelect").value;
+function ChangeCategory() {
+	const val = document.getElementById("CategorieSelect").value;
 
 	document.title = "Scalper " + val;
 	LoadMainContent('/items/' + val, "#maintable", '?' + val).then(()=> {
@@ -40,7 +40,7 @@ function OpenInNewTab(url) {
 	window.open(url, '_blank').focus();
 }
 
-LoadMainContent('catagories', "#CatagorieSelect", undefined, undefined);
+LoadMainContent('categories', "#CategorieSelect", undefined, undefined);
 
 
 console.log(window.location.search);

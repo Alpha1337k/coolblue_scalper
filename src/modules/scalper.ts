@@ -8,7 +8,7 @@ export enum ItemStaat {
 }
 
 export class Item {
-	catagorie	: string;
+	categorie	: string;
 
 	naam		: string;
 	itemDetails	: string[] = [];
@@ -19,8 +19,8 @@ export class Item {
 	nieuwePrijs	: number;
 	prijsDiff	: number;
 
-	constructor(item : CBItem, catagorie : string) {
-		this.catagorie = catagorie;
+	constructor(item : CBItem, categorie : string) {
+		this.categorie = categorie;
 		this.naam = item.naam;
 		this.link = "https://www.coolblue.nl/" + item.link;
 		this.staat = parseState(item.staat);
@@ -112,12 +112,12 @@ async function load_file(path : string, browser : puppeteer.Browser) : Promise<C
 	return getCBItems;
 }
 
-async function get_catagories(path:string) {
+async function get_categories(path:string) {
 	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
 	await page.goto(path, {waitUntil: 'load'});
 
-	const getCatagories = await page.evaluate(() => {
+	const getCategories = await page.evaluate(() => {
 		const values = document.getElementsByClassName("facet-value__radio hide js-facet-value");
 		let rval : string[] = [];
 
@@ -129,7 +129,7 @@ async function get_catagories(path:string) {
 		return rval;
 	});
 
-	return (getCatagories);
+	return (getCategories);
 }
 
 let isgetting = false;
@@ -141,16 +141,16 @@ export async function getItems() {
 
 	
 	isgetting = true;
-	let catagories = await get_catagories("https://www.coolblue.nl/tweedekans");
+	let categories = await get_categories("https://www.coolblue.nl/tweedekans");
 	let rval = [];
 
 
-	console.log(catagories);
-	for (let i = 0; i < catagories.length; i++) {
+	console.log(categories);
+	for (let i = 0; i < categories.length; i++) {
 		let items : Item[] = [];
 
-		const e = catagories[i];
-		for (let x = 0; ; x++)
+		const e = categories[i];
+		for (let x = 0; x < 20; x++)
 		{
 			let basic = await load_file("https://www.coolblue.nl/tweedekans/producttype:" + e + "?pagina=" + x, browser);
 			
@@ -162,7 +162,7 @@ export async function getItems() {
 				items.push(new Item(b, e));
 			}
 		}
-		rval.push({catagorie : e, items})
+		rval.push({categorie : e, items})
 	}
 	console.log("done!");
 	browser.close();
