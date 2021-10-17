@@ -4,7 +4,7 @@ import * as fs from 'fs';
 
 @Injectable()
 export class AppService {
-	products : {catagorie: string, items : scalper.Item[]}[];
+	products : {categorie: string, items : scalper.Item[]}[];
 
 	constructor() {
 		if (fs.existsSync("out.json"))
@@ -28,7 +28,7 @@ export class AppService {
 
 		if (this.products == undefined)
 			return rval += `<h1>Indexing.. please wait</h1></table>`;
-		const foundProducts = this.products.find(x => x.catagorie == cat);
+		const foundProducts = this.products.find(x => x.categorie == cat);
 
 		if (foundProducts == undefined)
 			rval += `<h3>Nothing found!</h3>`
@@ -52,14 +52,14 @@ export class AppService {
 		return rval;
 	}
 
-	async getCatagories() {
+	async getcategories() {
 		let rval : string = '';
 
 		if (this.products == undefined)
 			return rval;
 		for (let i = 0; i < this.products.length; i++) {
 			const e = this.products[i];
-			rval += `<option value="${e.catagorie}">${e.catagorie}</option>`
+			rval += `<option value="${e.categorie}">${e.categorie}</option>`
 		}
 		return rval;
 	}

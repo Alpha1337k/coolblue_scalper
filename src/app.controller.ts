@@ -10,8 +10,8 @@ export class AppController {
 		return await this.appService.createItemList(params.id as string);
 	}
 
-	@Get("catagories")
-	async getCatagories(): Promise<string> {
-		return await this.appService.getCatagories();
+	@Get("categories")
+	async getcategories(): Promise<string> {
+		return await this.appService.getcategories();
 	}
 }
