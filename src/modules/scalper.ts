@@ -117,7 +117,7 @@ async function get_categories(path:string) {
 	const page = await browser.newPage();
 	await page.goto(path, {waitUntil: 'load'});
 
-	const getcategories = await page.evaluate(() => {
+	const getCategories = await page.evaluate(() => {
 		const values = document.getElementsByClassName("facet-value__radio hide js-facet-value");
 		let rval : string[] = [];
 
@@ -129,7 +129,7 @@ async function get_categories(path:string) {
 		return rval;
 	});
 
-	return (getcategories);
+	return (getCategories);
 }
 
 let isgetting = false;

@@ -52,7 +52,7 @@ export class AppService {
 		return rval;
 	}
 
-	async getcategories() {
+	async getCategories() {
 		let rval : string = '';
 
 		if (this.products == undefined)

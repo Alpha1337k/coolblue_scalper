@@ -11,7 +11,7 @@ export class AppController {
 	}
 
 	@Get("categories")
-	async getcategories(): Promise<string> {
-		return await this.appService.getcategories();
+	async getCategories(): Promise<string> {
+		return await this.appService.getCategories();
 	}
 }
